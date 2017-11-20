@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tug-yaml</title>
+	<link rel="stylesheet" href="/_css/tug-yaml.css">
+</head>
+<body>
+	<h1>tug-yaml</h1>
+	<button class="yaml-load-persons">YAML: Persons</button>
+
+
+	<script>
+		Testpage = (function() {
+			var
+				bindEvents = function() {
+				var el = document.querySelectorAll('.yaml-load-persons');
+				console.log(el);
+					el[0].addEventListener('click', function() {
+						yamlLoad('persons.yml');
+					});
+				},
+				yamlLoad = function( filename ) {
+					var request = new XMLHttpRequest(),
+						fileurl = '/_yaml/' + filename;
+
+					request.open('GET', fileurl, true);
+					request.onload = function() {
+						if (request.status >= 200 && request.status < 400) {
+							var response = request.responseText,
+								js = yamlToJs(response);
+							console.log(js);
+						} else {
+							console.error('AJAX couldn\'t load');
+						}
+					};
+					request.send();
+				},
+				yamlToJs = function( yamlStr ) {
+					return yamlStr;
+				}
+			;
+
+			return {
+				bindEvents: bindEvents
+			}
+		})();
+
+		document.addEventListener('DOMContentLoaded', Testpage.bindEvents);
+
+	</script>
+
+</body>
+</html>

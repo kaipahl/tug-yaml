@@ -1,0 +1,14 @@
+-  Peter:
+    name: Peter De-Veloper
+    job: Developer
+    skills:
+      - Python
+      - Perl
+      - Pascal
+-  Lisa:
+    name: Lisa Cleverly
+    job: Developer
+    skills:
+      - Lisp
+      - Fortran
+      - Erlang
